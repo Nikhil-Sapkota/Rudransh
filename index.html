@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rudransh — Software Developer</title>
+  <meta name="description"
+    content="Rudransh is a software developer who crafts clean, performant digital experiences across the full stack." />
+  <meta name="author" content="Rudransh" />
+  <meta property="og:title" content="Rudransh — Software Developer" />
+  <meta property="og:description" content="Building things for the web — and beyond." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23111'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%23ccc' font-family='serif'>R</text></svg>" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="loading">
+
+  <!-- ── Custom Cursor ─────────────────────────────────────── -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ── Background Pattern ────────────────────────────────── -->
+  <div id="bg-pattern" aria-hidden="true"></div>
+
+  <!-- ── Page Loader ───────────────────────────────────────── -->
+  <div id="page-loader" role="status" aria-label="Loading">
+    <span class="loader-name">Rudransh</span>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════════ -->
+  <main>
+
+    <!-- ── § 1 · About / Hero ──────────────────────────────── -->
+    <section id="about" aria-labelledby="about-heading">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name" id="about-heading">Rudransh.</h1>
+      <p class="hero-tagline" id="hero-tagline">Building things for the web — and beyond.</p>
+      <p class="hero-intro" id="hero-intro">
+        I'm a software developer who loves crafting clean, performant digital experiences.
+        I work across the full stack, with a focus on thoughtful design, scalable architecture,
+        and meaningful code.
+      </p>
+      <p class="hero-detail" id="hero-detail">
+        When I'm not writing code, I'm probably reading about distributed systems,
+        contributing to open-source, or mentoring aspiring developers in my community.
+        I believe great software is equal parts engineering and empathy.
+      </p>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- ── § 2 · Professional Summary / Experience ─────────── -->
+    <section id="experience" aria-labelledby="exp-heading">
+      <p class="section-label">Professional Summary</p>
+      <div class="timeline reveal-stagger" id="experience-timeline">
+        <!-- Populated by main.js from API; fallback below -->
+        <div class="timeline-item">
+          <span class="timeline-duration">March, 2026 — Present</span>
+          <h3 class="timeline-role">Information Technology Intern</h3>
+          <p class="timeline-company">Council for Technical Education and Vocational Training</p>
+          <p class="timeline-desc">Data Digitalization of CTEVT projects and documents.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-duration">Janauary, 2026 — March, 2026</span>
+          <h3 class="timeline-role">Election Police Officer</h3>
+          <p class="timeline-company">Nepal Police</p>
+          <p class="timeline-desc">Ensured security and order during National level elections.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-duration">March, 2025 - Janauary, 2026</span>
+          <h3 class="timeline-role">Sales Representative</h3>
+          <p class="timeline-company">Siddhi Vinayak Snacks and Noodles Pvt. Ltd</p>
+          <p class="timeline-desc">Managed key accounts and drove sales growth in the assigned territory.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-duration"> October, 2024 - February, 2025</span>
+          <h3 class="timeline-role">Customer Service Representative</h3>
+          <p class="timeline-company">Social Security Fund Nepal</p>
+          <p class="timeline-desc">Worked at the front desk, responding to queries from beneficiaries and contributors,
+            as
+            well as assisting in the documentation process for various services.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-duration"> February, 2024 - October, 2024 </span>
+          <h3 class="timeline-role">Graphics Design Intern</h3>
+          <p class="timeline-company">Avoloft Technologies</p>
+          <p class="timeline-desc">Create a range of graphic design assets, including social media posts, digital
+            posters, presentations, and video thumbnails for the company's website and social media channels.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-duration"> March, 2023 - November, 2023 </span>
+          <h3 class="timeline-role">PC Support Technician</h3>
+          <p class="timeline-company">Mahalaxmi Polytechnic Institute</p>
+          <p class="timeline-desc">Managed and maintained the computer systems and network infrastructure of the
+            institute.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── § 3 · Education ─────────────────────────────────── -->
+    <section id="education" aria-labelledby="edu-heading">
+      <p class="section-label">Education</p>
+      <div class="edu-list reveal-stagger" id="education-list">
+        <div class="edu-card">
+          <span class="edu-year">2011 — 2021</span>
+          <h2 class="edu-degree" id="edu-heading">Secondary School Examination (SEE)</h2>
+          <p class="edu-institution">Shree Mahalaxmi Secondary School</p>
+          <p class="edu-desc">Completed secondary education with a focus on general science and mathematics.</p>
+        </div>
+        <div class="edu-card">
+          <span class="edu-year">2022 — 2025</span>
+          <h3 class="edu-degree">Diploma In Information Technology</h3>
+          <p class="edu-institution">Mahalaxmi Polytechnic Institute</p>
+          <p class="edu-desc">Completed Diploma in Information Technology with a focus on computer science and Software
+            Engineering.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── § 4 · Tools & Skills ───────────────────────────── -->
+    <section id="skills" aria-labelledby="skills-heading">
+      <p class="section-label" id="skills-heading">Tools &amp; Skills</p>
+      <div class="skills-grid reveal" id="skills-grid">
+        <!-- Populated by main.js from API; fallback below -->
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Next.js</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Redis</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">GraphQL</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">VS Code</span>
+      </div>
+    </section>
+
+    <!-- ── § 5 · Projects & Creations ────────────────────── -->
+    <section id="projects" aria-labelledby="projects-heading">
+      <p class="section-label" id="projects-heading">Projects &amp; Creations</p>
+      <div class="projects-grid reveal-stagger" id="projects-grid">
+        <!-- Populated by main.js from API; fallback below -->
+        <div class="project-card">
+          <div class="project-card-top">
+            <h3 class="project-name">Nexus API Gateway</h3>
+            <div class="project-links">
+              <a href="https://github.com/Nikhil-Sapkota/nexus" target="_blank" rel="noopener" class="project-link"
+                title="GitHub" data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="project-desc">A high-performance API gateway with rate limiting, caching, and real-time monitoring
+            built for microservices.</p>
+          <div class="project-tech">
+            <span class="tech-chip">Node.js</span>
+            <span class="tech-chip">Redis</span>
+            <span class="tech-chip">PostgreSQL</span>
+            <span class="tech-chip">Docker</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <h3 class="project-name">Codefolio</h3>
+            <div class="project-links">
+              <a href="https://github.com/Nikhil-Sapkota/codefolio" target="_blank" rel="noopener" class="project-link"
+                title="GitHub" data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </a>
+              <a href="https://codefolio.dev" target="_blank" rel="noopener" class="project-link" title="Live"
+                data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="project-desc">Open-source developer portfolio generator with automated GitHub stats, blog
+            integration, and zero-config deployment.</p>
+          <div class="project-tech">
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">Next.js</span>
+            <span class="tech-chip">GitHub API</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <h3 class="project-name">QueryMind</h3>
+            <div class="project-links">
+              <a href="https://github.com/Nikhil-Sapkota/querymind" target="_blank" rel="noopener" class="project-link"
+                title="GitHub" data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="project-desc">AI-powered SQL query assistant that converts natural language to optimized SQL queries
+            with schema-aware context.</p>
+          <div class="project-tech">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">FastAPI</span>
+            <span class="tech-chip">OpenAI</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <h3 class="project-name">RealBoard</h3>
+            <div class="project-links">
+              <a href="https://github.com/Nikhil-Sapkota/realboard" target="_blank" rel="noopener" class="project-link"
+                title="GitHub" data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </a>
+              <a href="https://realboard.app" target="_blank" rel="noopener" class="project-link" title="Live"
+                data-cursor-hover>
+                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <p class="project-desc">Real-time collaborative whiteboard with infinite canvas, vector drawing, and
+            multi-user sync via WebSockets.</p>
+          <div class="project-tech">
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">Canvas API</span>
+            <span class="tech-chip">Socket.io</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── § 6 · Leadership & Community ───────────────────── -->
+    <section id="leadership" aria-labelledby="leadership-heading">
+      <p class="section-label" id="leadership-heading">Leadership &amp; Community</p>
+      <div class="leadership-list reveal-stagger" id="leadership-list">
+        <!-- Populated by main.js from API; fallback below -->
+        <div class="leadership-item">
+          <div class="leadership-icon">◈</div>
+          <div class="leadership-body">
+            <div class="leadership-role">Open Source Contributor</div>
+            <div class="leadership-org">Various Open Source Projects</div>
+            <div class="leadership-duration">2023 - Present</div>
+            <p class="leadership-desc">Contribute to various open-source projects by submitting bug fixes, feature
+              request and PRs</p>
+          </div>
+        </div>
+        <div class="leadership-item">
+          <div class="leadership-icon">◇</div>
+          <div class="leadership-body">
+            <div class="leadership-role">Open Source Maintainer</div>
+            <div class="leadership-org">OSS Community</div>
+            <div class="leadership-duration">2023 — Present</div>
+            <p class="leadership-desc">Maintain 3 open-source projects with 1,200+ GitHub stars combined. Review PRs,
+              triage issues, and guide contributors.</p>
+          </div>
+        </div>
+        <div class="leadership-item">
+          <div class="leadership-icon">◉</div>
+          <div class="leadership-body">
+            <div class="leadership-role">Tech Speaker</div>
+            <div class="leadership-org">Various meetups</div>
+            <div class="leadership-duration">2023 - Present</div>
+            <p class="leadership-desc">Presented talks at various meetups and conferences on topics like "React.js",
+              "Next.js" and "Web Development".</p>
+          </div>
+        </div>
+        <div class="leadership-item">
+          <div class="leadership-icon">◎</div>
+          <div class="leadership-body">
+            <div class="leadership-role">Graphics Designer</div>
+            <div class="leadership-org">Avoloft Technologies</div>
+            <div class="leadership-duration">2024 — Present</div>
+            <p class="leadership-desc">Creating visually appealing graphics for various clients and projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── § 7 · Connect ──────────────────────────────────── -->
+    <section id="connect" aria-labelledby="connect-heading">
+      <p class="section-label" id="connect-heading">Connect</p>
+      <div class="connect-grid">
+        <!-- Left: Info -->
+        <div class="connect-info reveal">
+          <h2>Let's talk.</h2>
+          <p>Whether it's a project idea, a collaboration opportunity, or just a conversation about tech — my inbox is
+            always open.</p>
+          <div class="connect-details">
+            <div class="connect-detail-item">
+              <span>✉</span>
+              <span id="contact-email">mahadevsapkota2@gmail.com</span>
+            </div>
+            <div class="connect-detail-item">
+              <span>◎</span>
+              <span id="contact-phone">+977-9745657000</span>
+            </div>
+            <div class="connect-detail-item">
+              <span>◉</span>
+              <span id="contact-location">Kathmandu, Nepal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-name">Name</label>
+                <input type="text" id="f-name" name="name" placeholder="Your name" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="f-email">Email</label>
+                <input type="email" id="f-email" name="email" placeholder="your@email.com" required
+                  autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f-subject">Subject</label>
+              <input type="text" id="f-subject" name="subject" placeholder="What's on your mind?" />
+            </div>
+            <div class="form-group">
+              <label for="f-message">Message</label>
+              <textarea id="f-message" name="message" placeholder="Write your message here…" required></textarea>
+            </div>
+            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <p>Crafted with intention by <strong>Rudransh</strong> &mdash; &copy; <span id="footer-year"></span></p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BOTTOM NAV ISLAND
+  ═══════════════════════════════════════════════════════ -->
+  <nav id="nav-island" aria-label="Site navigation">
+
+    <!-- Twitter -->
+    <a href="https://x.com/NikhilSapkota50" target="_blank" rel="noopener" class="nav-item" id="nav-twitter"
+      data-tooltip="Twitter" data-social="twitter" aria-label="Twitter">
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4l16 16M4 20L20 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+      <span class="nav-label">X</span>
+    </a>
+
+    <!-- GitHub -->
+    <a href="https://github.com/Nikhil-Sapkota" target="_blank" rel="noopener" class="nav-item" id="nav-github"
+      data-tooltip="GitHub" data-social="github" aria-label="GitHub">
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+      </svg>
+      <span class="nav-label">GitHub</span>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/nikhil-sapkota-2a71112aa/" target="_blank" rel="noopener" class="nav-item"
+      id="nav-linkedin" data-tooltip="LinkedIn" data-social="linkedin" aria-label="LinkedIn">
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+      <span class="nav-label">LinkedIn</span>
+    </a>
+
+    <div class="nav-separator" aria-hidden="true"></div>
+
+    <!-- Projects (scroll link) -->
+    <button class="nav-item" id="nav-projects" data-section="projects" data-tooltip="Projects" aria-label="Projects">
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="3" width="6" height="6" rx="1" />
+        <rect x="16" y="3" width="6" height="6" rx="1" />
+        <rect x="9" y="3" width="6" height="6" rx="1" />
+        <rect x="2" y="10" width="6" height="11" rx="1" />
+        <rect x="9" y="10" width="6" height="6" rx="1" />
+        <rect x="16" y="10" width="6" height="6" rx="1" />
+      </svg>
+      <span class="nav-label">Projects</span>
+    </button>
+
+    <!-- Blog -->
+    <a href="blog.html" class="nav-item" id="nav-blog" data-tooltip="Blog" aria-label="Blog">
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+      </svg>
+      <span class="nav-label">Blog</span>
+    </a>
+
+    <div class="nav-separator" aria-hidden="true"></div>
+
+    <!-- Contrast Toggle -->
+    <button id="contrast-toggle" aria-label="Toggle contrast" data-tooltip="Contrast">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v18M3 12h18" opacity="0.3" />
+        <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor" stroke="none" />
+      </svg>
+      <span class="nav-label" style="font-size:0.6rem;letter-spacing:.08em;text-transform:uppercase;">Theme</span>
+    </button>
+
+  </nav>
+
+  <!-- ── Scripts ─────────────────────────────────────────────── -->
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

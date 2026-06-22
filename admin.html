@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Rudransh</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23111'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-size='12' fill='%23ccc' font-family='sans-serif'>⚙</text></svg>" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+
+<!-- ── Toast Container ─────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ── Confirm Dialog ─────────────────────────────────────── -->
+<div id="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+  <div class="confirm-box">
+    <h3 id="confirm-title">Confirm</h3>
+    <p  id="confirm-message">Are you sure?</p>
+    <div class="confirm-actions">
+      <button class="btn" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-danger" id="confirm-ok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     LOGIN SCREEN
+═══════════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Admin</h1>
+    <p>Sign in to manage your portfolio</p>
+    <form id="login-form" novalidate>
+      <div class="login-field">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="username" autocomplete="username" required />
+      </div>
+      <div class="login-field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn-login">Sign In</button>
+    </form>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <h2>Nikhil Sapkota</h2>
+    <span>Admin Panel</span>
+  </div>
+
+  <div class="sidebar-nav">
+    <span class="sidebar-section-label">Overview</span>
+    <button class="sidebar-item active" data-panel="dashboard">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Dashboard
+    </button>
+    <button class="sidebar-item" data-panel="messages">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Messages
+    </button>
+
+    <span class="sidebar-section-label" style="margin-top:.5rem">Content</span>
+    <button class="sidebar-item" data-panel="about">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      About &amp; Text
+    </button>
+    <button class="sidebar-item" data-panel="blogs">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Blog Posts
+    </button>
+    <button class="sidebar-item" data-panel="projects">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/></svg>
+      Projects
+    </button>
+    <button class="sidebar-item" data-panel="experience">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      Experience
+    </button>
+    <button class="sidebar-item" data-panel="education">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Education
+    </button>
+    <button class="sidebar-item" data-panel="skills">
+      <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Skills
+    </button>
+    <button class="sidebar-item" data-panel="leadership">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Leadership
+    </button>
+
+    <span class="sidebar-section-label" style="margin-top:.5rem">Account</span>
+    <button class="sidebar-item" data-panel="settings">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </button>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">Logged in as <strong id="sidebar-username">—</strong></div>
+    <button class="btn-logout" id="btn-logout">Sign out</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN AREA
+═══════════════════════════════════════════════════════ -->
+<div id="main-area">
+
+  <!-- ── Dashboard ────────────────────────────────────────── -->
+  <section class="panel active" id="panel-dashboard">
+    <div class="panel-header">
+      <h2>Dashboard</h2>
+      <a href="index.html" target="_blank" class="btn">View Site →</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-blogs">—</div>
+        <div class="stat-label">Blog Posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-projects">—</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-messages">—</div>
+        <div class="stat-label">Messages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-unread">—</div>
+        <div class="stat-label">Unread</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Quick Actions</h3>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="showPanel('blogs'); openBlogEditor()">+ New Blog Post</button>
+        <button class="btn btn-primary" onclick="showPanel('projects'); openProjectEditor()">+ New Project</button>
+        <button class="btn" onclick="showPanel('messages')">View Messages</button>
+        <button class="btn" onclick="showPanel('about')">Edit Site Text</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Blog Manager ──────────────────────────────────────── -->
+  <section class="panel" id="panel-blogs">
+
+    <!-- Table View -->
+    <div id="blogs-table-view">
+      <div class="panel-header">
+        <h2>Blog Posts</h2>
+        <button class="btn btn-primary" onclick="openBlogEditor()">+ New Post</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="blogs-tbody">
+          <tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:2rem">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Editor View -->
+    <div id="blogs-editor-view" style="display:none">
+      <div class="panel-header">
+        <h2 id="blog-editor-title">New Post</h2>
+        <button class="btn" onclick="closeBlogEditor()">← Back</button>
+      </div>
+      <div class="form-section">
+        <h3>Post Details</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="blog-title-input">Title *</label>
+            <input type="text" id="blog-title-input" placeholder="Post title…" />
+          </div>
+          <div class="field">
+            <label for="blog-slug-input">Slug (auto-generated)</label>
+            <input type="text" id="blog-slug-input" placeholder="post-url-slug" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="blog-excerpt-input">Excerpt</label>
+            <input type="text" id="blog-excerpt-input" placeholder="Short summary…" />
+          </div>
+          <div class="field">
+            <label for="blog-published-input">Status</label>
+            <select id="blog-published-input">
+              <option value="0">Draft</option>
+              <option value="1">Published</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Content</h3>
+        <div class="editor-toolbar">
+          <button class="editor-btn" onclick="editorCmd('bold')"><strong>B</strong></button>
+          <button class="editor-btn" onclick="editorCmd('italic')"><em>I</em></button>
+          <button class="editor-btn" onclick="editorCmd('underline')"><u>U</u></button>
+          <button class="editor-btn" onclick="editorCmd('insertParagraph')">¶</button>
+          <button class="editor-btn" onclick="editorCmd('insertUnorderedList')">• List</button>
+          <button class="editor-btn" onclick="editorCmd('insertOrderedList')">1. List</button>
+          <button class="editor-btn" onclick="editorCmd('removeFormat')">Clear</button>
+        </div>
+        <div class="rich-editor" id="blog-body-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Blog content editor"></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="saveBlog()">Save Post</button>
+        <button class="btn" onclick="closeBlogEditor()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ──────────────────────────────────────────── -->
+  <section class="panel" id="panel-projects">
+
+    <div id="projects-table-view">
+      <div class="panel-header">
+        <h2>Projects</h2>
+        <button class="btn btn-primary" onclick="openProjectEditor()">+ New Project</button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Name</th><th>Tech Stack</th><th>Featured</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="projects-tbody">
+          <tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:2rem">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="projects-editor-view" style="display:none">
+      <div class="panel-header">
+        <h2 id="project-editor-title">New Project</h2>
+        <button class="btn" onclick="closeProjectEditor()">← Back</button>
+      </div>
+      <div class="form-section">
+        <h3>Project Details</h3>
+        <div class="field-row">
+          <div class="field">
+            <label for="proj-name">Name *</label>
+            <input type="text" id="proj-name" placeholder="Project name…" />
+          </div>
+          <div class="field">
+            <label for="proj-tech">Tech Stack (comma separated)</label>
+            <input type="text" id="proj-tech" placeholder="React, Node.js, PostgreSQL" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="proj-desc">Description *</label>
+          <textarea id="proj-desc" placeholder="What does this project do?"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="proj-github">GitHub URL</label>
+            <input type="url" id="proj-github" placeholder="https://github.com/…" />
+          </div>
+          <div class="field">
+            <label for="proj-live">Live URL</label>
+            <input type="url" id="proj-live" placeholder="https://…" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="proj-featured">Featured</label>
+            <select id="proj-featured">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="proj-order">Sort Order</label>
+            <input type="number" id="proj-order" value="0" min="0" />
+          </div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="saveProject()">Save Project</button>
+        <button class="btn" onclick="closeProjectEditor()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ────────────────────────────────────────── -->
+  <section class="panel" id="panel-experience">
+    <div id="experiences-table-view">
+      <div class="panel-header">
+        <h2>Work Experience</h2>
+        <button class="btn btn-primary" onclick="experiencesPanel.openEditor()">+ Add Entry</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Role</th><th>Company</th><th>Duration</th><th>Actions</th></tr></thead>
+        <tbody id="experiences-tbody">
+          <tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:2rem">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="experiences-editor-view" style="display:none">
+      <div class="panel-header">
+        <h2 id="experiences-editor-title">New Entry</h2>
+        <button class="btn" onclick="experiencesPanel.closeEditor()">← Back</button>
+      </div>
+      <div class="form-section">
+        <h3>Details</h3>
+        <div class="field-row">
+          <div class="field"><label>Role *</label><input type="text" id="experiences-role" placeholder="e.g. Senior Engineer" /></div>
+          <div class="field"><label>Company *</label><input type="text" id="experiences-company" placeholder="Company name" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Duration</label><input type="text" id="experiences-duration" placeholder="2021 — 2023" /></div>
+          <div class="field"><label>Sort Order</label><input type="number" id="experiences-sort_order" value="0" /></div>
+        </div>
+        <div class="field"><label>Description</label><textarea id="experiences-description" placeholder="Brief description of your role…"></textarea></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="experiencesPanel.save()">Save</button>
+        <button class="btn" onclick="experiencesPanel.closeEditor()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Education ─────────────────────────────────────────── -->
+  <section class="panel" id="panel-education">
+    <div id="education-table-view">
+      <div class="panel-header">
+        <h2>Education</h2>
+        <button class="btn btn-primary" onclick="educationPanel.openEditor()">+ Add Entry</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Degree</th><th>Institution</th><th>Year</th><th>Actions</th></tr></thead>
+        <tbody id="education-tbody">
+          <tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:2rem">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="education-editor-view" style="display:none">
+      <div class="panel-header">
+        <h2 id="education-editor-title">New Entry</h2>
+        <button class="btn" onclick="educationPanel.closeEditor()">← Back</button>
+      </div>
+      <div class="form-section">
+        <h3>Details</h3>
+        <div class="field-row">
+          <div class="field"><label>Degree *</label><input type="text" id="education-degree" placeholder="B.Tech in Computer Science" /></div>
+          <div class="field"><label>Institution *</label><input type="text" id="education-institution" placeholder="University name" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Year</label><input type="text" id="education-year" placeholder="2017 — 2021" /></div>
+          <div class="field"><label>Sort Order</label><input type="number" id="education-sort_order" value="0" /></div>
+        </div>
+        <div class="field"><label>Description</label><textarea id="education-description" placeholder="Optional description…"></textarea></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="educationPanel.save()">Save</button>
+        <button class="btn" onclick="educationPanel.closeEditor()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ────────────────────────────────────────────── -->
+  <section class="panel" id="panel-skills">
+    <div class="panel-header">
+      <h2>Skills &amp; Tools</h2>
+    </div>
+    <div class="form-section">
+      <h3>Add Skill</h3>
+      <div style="display:flex;gap:.75rem;align-items:flex-end">
+        <div class="field" style="flex:1;margin-bottom:0">
+          <label for="new-skill-input">Skill / Tool Name</label>
+          <input type="text" id="new-skill-input" placeholder="e.g. Rust, Kubernetes…"
+                 onkeydown="if(event.key==='Enter'){addSkill()}" />
+        </div>
+        <button class="btn btn-primary" onclick="addSkill()" style="flex-shrink:0">Add</button>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>Current Skills</h3>
+      <div class="tag-list" id="skills-tag-list">Loading…</div>
+    </div>
+  </section>
+
+  <!-- ── Leadership ─────────────────────────────────────────── -->
+  <section class="panel" id="panel-leadership">
+    <div id="leadership-table-view">
+      <div class="panel-header">
+        <h2>Leadership &amp; Community</h2>
+        <button class="btn btn-primary" onclick="leadershipPanel.openEditor()">+ Add Entry</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Role</th><th>Organization</th><th>Duration</th><th>Actions</th></tr></thead>
+        <tbody id="leadership-tbody">
+          <tr><td colspan="4" style="color:var(--text-muted);text-align:center;padding:2rem">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="leadership-editor-view" style="display:none">
+      <div class="panel-header">
+        <h2 id="leadership-editor-title">New Entry</h2>
+        <button class="btn" onclick="leadershipPanel.closeEditor()">← Back</button>
+      </div>
+      <div class="form-section">
+        <h3>Details</h3>
+        <div class="field-row">
+          <div class="field"><label>Role *</label><input type="text" id="leadership-role" placeholder="e.g. Technical Lead" /></div>
+          <div class="field"><label>Organization *</label><input type="text" id="leadership-organization" placeholder="Organization name" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Duration</label><input type="text" id="leadership-duration" placeholder="2020 — 2021" /></div>
+          <div class="field"><label>Sort Order</label><input type="number" id="leadership-sort_order" value="0" /></div>
+        </div>
+        <div class="field"><label>Description</label><textarea id="leadership-description" placeholder="Brief description…"></textarea></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="leadershipPanel.save()">Save</button>
+        <button class="btn" onclick="leadershipPanel.closeEditor()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About / Content ────────────────────────────────────── -->
+  <section class="panel" id="panel-about">
+    <div class="panel-header">
+      <h2>About &amp; Site Text</h2>
+      <button class="btn btn-primary" onclick="saveAboutContent()">Save All Changes</button>
+    </div>
+    <div id="about-content-list">
+      <p style="color:var(--text-muted)">Loading…</p>
+    </div>
+    <div style="margin-top:1.25rem">
+      <button class="btn btn-primary" onclick="saveAboutContent()">Save All Changes</button>
+    </div>
+  </section>
+
+  <!-- ── Messages ───────────────────────────────────────────── -->
+  <section class="panel" id="panel-messages">
+    <div class="panel-header">
+      <h2>Contact Messages</h2>
+    </div>
+    <div id="messages-list">
+      <p style="color:var(--text-muted)">Loading…</p>
+    </div>
+  </section>
+
+  <!-- ── Settings ───────────────────────────────────────────── -->
+  <section class="panel" id="panel-settings">
+    <div class="panel-header">
+      <h2>Account Settings</h2>
+    </div>
+    <div class="form-section" style="max-width:380px">
+      <h3>Change Password</h3>
+      <form id="change-pass-form" novalidate>
+        <div class="field">
+          <label for="current-pass">Current Password</label>
+          <input type="password" id="current-pass" required autocomplete="current-password" />
+        </div>
+        <div class="field">
+          <label for="new-pass">New Password</label>
+          <input type="password" id="new-pass" required autocomplete="new-password" minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+    </div>
+
+    <div class="form-section" style="max-width:380px;margin-top:1rem">
+      <h3>Danger Zone</h3>
+      <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6">
+        Default admin login: <code>admin</code> / <code>admin123</code> — change this immediately.
+      </p>
+      <a href="index.html" target="_blank" class="btn">View Portfolio →</a>
+    </div>
+  </section>
+
+</div><!-- /#main-area -->
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

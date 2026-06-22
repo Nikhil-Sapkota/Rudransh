@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Nikhil Sapkota</title>
+  <meta name="description" content="Writings on software development, systems, and engineering craft by Nikhil Sapkota." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23111'/><text x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%23ccc' font-family='serif'>R</text></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Blog-specific additions */
+    .blog-hero {
+      padding-top: clamp(5rem, 12vh, 8rem);
+      margin-bottom: 3rem;
+    }
+    .blog-hero h1 {
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp var(--dur-slow) var(--ease) 1.2s forwards;
+    }
+    .blog-hero p {
+      font-size: var(--fs-base);
+      color: var(--text-muted);
+      font-weight: 300;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp var(--dur-slow) var(--ease) 1.4s forwards;
+    }
+    .blog-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .blog-card {
+      display: block;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background var(--dur-fast) var(--ease);
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-card:last-child { border-bottom: none; }
+    .blog-card-date {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .blog-card-title {
+      font-size: var(--fs-lg);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .blog-card:hover .blog-card-title {
+      color: var(--text-accent);
+    }
+    .blog-card-excerpt {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .blog-card-arrow {
+      margin-top: 0.75rem;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    }
+    .blog-card:hover .blog-card-arrow {
+      gap: 0.7rem;
+      color: var(--text-primary);
+    }
+    /* Blog post modal */
+    #blog-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9800;
+      background: rgba(0, 0, 0, 0.85);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 4rem 2rem 4rem;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--dur-base) var(--ease),
+                  visibility var(--dur-base) var(--ease);
+    }
+    #blog-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .blog-modal-inner {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 680px;
+      width: 100%;
+      padding: 2.5rem;
+      transform: translateY(20px);
+      transition: transform var(--dur-base) var(--ease);
+    }
+    #blog-modal.open .blog-modal-inner {
+      transform: translateY(0);
+    }
+    .blog-modal-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      margin-bottom: 1.5rem;
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .blog-modal-close:hover { color: var(--text-primary); }
+    .blog-modal-title {
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .blog-modal-date {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .blog-modal-body {
+      font-size: var(--fs-base);
+      color: var(--text-secondary);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .blog-modal-body p { margin-bottom: 1rem; }
+    .blog-modal-body em { color: var(--text-primary); font-style: italic; }
+    .empty-state {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-muted);
+      font-size: var(--fs-sm);
+    }
+  </style>
+</head>
+<body class="loading">
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="bg-pattern"  aria-hidden="true"></div>
+
+  <div id="page-loader" role="status">
+    <span class="loader-name">Blog</span>
+    <div class="loader-bar"></div>
+  </div>
+
+  <main>
+    <div class="blog-hero">
+      <h1>Writing.</h1>
+      <p>Thoughts on systems, software, and the craft of building.</p>
+    </div>
+
+    <div class="blog-grid reveal-stagger" id="blog-grid">
+      <div class="empty-state">Loading posts…</div>
+    </div>
+  </main>
+
+  <!-- Blog Post Modal -->
+  <div id="blog-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="blog-modal-inner">
+      <button class="blog-modal-close" id="modal-close" aria-label="Close">
+        ← Back to blog
+      </button>
+      <h2 class="blog-modal-title" id="modal-title"></h2>
+      <div class="blog-modal-date"  id="modal-date"></div>
+      <div class="blog-modal-body"  id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>← <a href="index.html">Back to portfolio</a> &nbsp;·&nbsp; Nikhil Sapkota &copy; <span id="footer-year"></span></p>
+  </footer>
+
+  <nav id="nav-island" aria-label="Site navigation">
+    <a href="https://x.com/NikhilSapkota50" target="_blank" rel="noopener"
+       class="nav-item" data-tooltip="Twitter" aria-label="Twitter" data-social="twitter">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-label">X</span>
+    </a>
+    <a href="https://github.com/Nikhil-Sapkota" target="_blank" rel="noopener"
+       class="nav-item" data-tooltip="GitHub" aria-label="GitHub" data-social="github">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      <span class="nav-label">GitHub</span>
+    </a>
+    <div class="nav-separator"></div>
+    <a href="index.html" class="nav-item" data-tooltip="Portfolio" aria-label="Portfolio">
+      <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.5" fill="none"/><polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span class="nav-label">Home</span>
+    </a>
+    <div class="nav-separator"></div>
+    <button id="contrast-toggle" aria-label="Toggle contrast" data-tooltip="Contrast">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor" stroke="none"/></svg>
+      <span class="nav-label" style="font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;">Theme</span>
+    </button>
+  </nav>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    function formatDate(str) {
+      const d = new Date(str);
+      return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    }
+
+    async function loadBlogs() {
+      const grid = document.getElementById('blog-grid');
+      try {
+        const res  = await fetch('api/blog.php');
+        const data = await res.json();
+        if (!data.success || !data.data.length) {
+          grid.innerHTML = '<div class="empty-state">No posts yet. Check back soon.</div>';
+          return;
+        }
+        grid.innerHTML = data.data.map(post => `
+          <a class="blog-card reveal" href="#" data-slug="${escHtml(post.slug)}" aria-label="${escHtml(post.title)}">
+            <div class="blog-card-date">${formatDate(post.created_at)}</div>
+            <div class="blog-card-title">${escHtml(post.title)}</div>
+            <p class="blog-card-excerpt">${escHtml(post.excerpt || '')}</p>
+            <div class="blog-card-arrow">Read more →</div>
+          </a>
+        `).join('');
+
+        // Re-observe after inject
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Card click
+        grid.querySelectorAll('.blog-card').forEach(card => {
+          card.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const slug = card.dataset.slug;
+            openPost(slug);
+          });
+        });
+      } catch {
+        grid.innerHTML = '<div class="empty-state">Could not load posts.</div>';
+      }
+    }
+
+    async function openPost(slug) {
+      const modal = document.getElementById('blog-modal');
+      const title = document.getElementById('modal-title');
+      const date  = document.getElementById('modal-date');
+      const body  = document.getElementById('modal-body');
+
+      title.textContent = 'Loading…';
+      body.innerHTML = '';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      try {
+        const res  = await fetch(`api/blog.php?slug=${encodeURIComponent(slug)}`);
+        const data = await res.json();
+        if (data.success) {
+          title.textContent = data.data.title;
+          date.textContent  = formatDate(data.data.created_at);
+          body.innerHTML    = data.data.body;
+        }
+      } catch {
+        body.innerHTML = '<p>Could not load this post.</p>';
+      }
+    }
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('blog-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    document.getElementById('blog-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('blog-modal')) {
+        document.getElementById('blog-modal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('blog-modal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+
+    // Contrast toggle
+    const contrastBtn = document.getElementById('contrast-toggle');
+    const saved = localStorage.getItem('portfolio-contrast');
+    if (saved === 'light') document.body.classList.add('contrast-light');
+    contrastBtn.addEventListener('click', () => {
+      document.body.classList.toggle('contrast-light');
+      localStorage.setItem('portfolio-contrast', document.body.classList.contains('contrast-light') ? 'light' : 'dark');
+    });
+
+    // Nav island show
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.body.classList.remove('loading');
+        document.getElementById('nav-island').classList.add('visible');
+      }, 1400);
+    });
+
+    loadBlogs();
+  </script>
+  <script src="assets/js/cursor.js"></script>
+</body>
+</html>
