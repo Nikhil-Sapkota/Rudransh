@@ -18,8 +18,8 @@ A sleek, responsive, and modern personal portfolio website built to showcase my 
 
 ### Frontend & Styling
 * **Languages:** HTML5, CSS3, JavaScript (ES6+), php
-* **Framework/Library:** [e.g., React.js / Next.js / Vue.js / Plain HTML]
-* **Styling:** [e.g., Tailwind CSS / Bootstrap / Styled Components]
+* **Framework/Library:** Plain HTML
+* **Styling:** Tailwind CSS / Bootstrap / Styled Components
 
 ### Tools & Hosting
 * **Version Control:** Git & GitHub
