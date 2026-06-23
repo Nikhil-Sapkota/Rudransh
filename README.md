@@ -32,5 +32,3 @@ If you would like to download this project and run it locally on your machine, f
 
 ### Prerequisites
 Make sure you have Node.js and npm installed on your machine.
-
-### Installation Steps
