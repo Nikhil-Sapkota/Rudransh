@@ -12,7 +12,6 @@ CREATE DATABASE IF NOT EXISTS rudransh_portfolio
   COLLATE utf8mb4_unicode_ci;
 
 USE rudransh_portfolio;
-
 -- ------------------------------------------------------------
 -- Admin Users
 -- ------------------------------------------------------------
