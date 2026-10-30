@@ -11,6 +11,41 @@
    CSS Custom Properties (Design Tokens)
    ============================================================ */
 :root {
+  --scroll-thumb: rgba(255, 255, 255, 0.18);
+  --scroll-thumb-hover: rgba(255, 255, 255, 0.45);
+}
+
+/* Change this selector to match how your theme toggle works */
+[data-theme="light"] {
+  --scroll-thumb: rgba(0, 0, 0, 0.2);
+  --scroll-thumb-hover: rgba(0, 0, 0, 0.5);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+  background-clip: padding-box;
+}
+:root {
   /* Colors */
   --bg: #080808;
   --bg-alt: #0f0f0f;
