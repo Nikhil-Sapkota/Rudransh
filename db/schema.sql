@@ -2,7 +2,6 @@
 --  Rudransh Portfolio — MySQL Database Schema
 -- ============================================================
 -- Run this file once to set up the database.
--- Default admin credentials: username = admin | password = admin123
 -- CHANGE THE PASSWORD immediately after first login via admin panel.
 -- ============================================================
 
