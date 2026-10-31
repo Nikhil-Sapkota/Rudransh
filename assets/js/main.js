@@ -262,7 +262,7 @@ function initContactForm() {
   const status = document.getElementById('form-status');
   if (!form || !status) return;
 
-  const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+  const ACCESS_KEY = 'c1867fd9-4229-4cfe-97bb-a413d721a9f3';
 
   const setStatus = (type, msg) => {
     status.className = 'form-status ' + type;
