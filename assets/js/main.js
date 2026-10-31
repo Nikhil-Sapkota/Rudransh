@@ -262,34 +262,61 @@ function initContactForm() {
   const status = document.getElementById('form-status');
   if (!form || !status) return;
 
+  const ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+
+  const setStatus = (type, msg) => {
+    status.className = 'form-status ' + type;
+    status.textContent = msg;
+  };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('.btn-submit');
+
+    const name    = form.querySelector('#f-name').value.trim();
+    const email   = form.querySelector('#f-email').value.trim();
+    const subject = form.querySelector('#f-subject').value.trim();
+    const message = form.querySelector('#f-message').value.trim();
+    const isBot   = form.querySelector('#f-botcheck').checked;
+
+    if (isBot) return; // bot le hidden checkbox tick garyo
+
+    // form ma novalidate xa, tesaile yaha aafai check garne
+    if (!name || !email || !message) {
+      setStatus('error', 'Please fill in your name, email and message.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('error', 'Please enter a valid email address.');
+      return;
+    }
+
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
-    const payload = {
-      name:    form.querySelector('#f-name').value.trim(),
-      email:   form.querySelector('#f-email').value.trim(),
-      subject: form.querySelector('#f-subject').value.trim(),
-      message: form.querySelector('#f-message').value.trim(),
-    };
-
     try {
-      const res  = await fetch('api/contact.php', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload),
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          from_name: 'Portfolio Website',
+          subject: subject ? 'Portfolio: ' + subject : 'New message from your portfolio',
+          name,
+          email,
+          message,
+        }),
       });
       const data = await res.json();
 
-      status.className = 'form-status ' + (data.success ? 'success' : 'error');
-      status.textContent = data.message;
-
-      if (data.success) form.reset();
+      if (res.ok && data.success) {
+        setStatus('success', "Message sent! I'll get back to you soon.");
+        form.reset();
+      } else {
+        setStatus('error', data.message || 'Something went wrong. Please try again.');
+      }
     } catch {
-      status.className = 'form-status error';
-      status.textContent = 'Something went wrong. Please try again.';
+      setStatus('error', 'Something went wrong. Please try again.');
     } finally {
       btn.textContent = 'Send Message';
       btn.disabled = false;
