@@ -108,8 +108,10 @@ body.contrast-light {
   --surface: rgba(0, 0, 0, 0.05);
   --surface-hover: rgba(189, 189, 189, 0.09);
   --border: rgba(0, 0, 0, 0.1);
-  --text-primary: #2c2c2c;
-  --text-secondary: #181818;
+   --text-primary:   #111111; 
+   --text-secondary: #444444;  
+   --text-muted:     #6b6b6b;  
+   --text-accent:    #0f766e;  
   --nav-bg: rgba(248, 248, 248, 0.80);
   --pattern-color: rgba(0, 0, 0, 0.045);
   --cursor-dot: rgba(0, 0, 0, 0.8);
